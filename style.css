@@ -24,16 +24,29 @@ body {
   overflow-x: hidden;
 
   /* Frutiger Aero sky-to-aqua gradient */
-  background: linear-gradient(
-    160deg,
-    #c9f0ff 0%,
-    #a0dff7 20%,
-    #6ecff6 40%,
-    #4ab8e8 55%,
-    #74d7c4 75%,
-    #a8eac8 100%
-  );
+  background: linear-gradient(180deg, #8fe4ff 0%, #2b9ae4 38%, #0f5fb8 72%, #0b3a8b 100%);
   background-attachment: fixed;
+}
+
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+body::before {
+  z-index: 0;
+  background:
+    radial-gradient(circle at 20% -5%, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.15) 28%, transparent 58%),
+    radial-gradient(circle at 75% 5%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.08) 24%, transparent 58%);
+  mix-blend-mode: screen;
+}
+
+body::after {
+  z-index: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.08) 20%, transparent 45%);
 }
 
 /* ---------- Bokeh / Orb background decorations ---------- */
@@ -133,18 +146,18 @@ body {
 
   /* Frutiger Aero glass */
   background: linear-gradient(
-    160deg,
-    rgba(255,255,255,0.72) 0%,
-    rgba(200,240,255,0.55) 50%,
-    rgba(170,235,220,0.50) 100%
+    155deg,
+    rgba(255,255,255,0.40) 0%,
+    rgba(204,242,255,0.34) 45%,
+    rgba(138,221,255,0.25) 100%
   );
-  backdrop-filter: blur(18px) saturate(160%);
-  -webkit-backdrop-filter: blur(18px) saturate(160%);
-  border: 1.5px solid rgba(255,255,255,0.80);
+  backdrop-filter: blur(22px) saturate(165%);
+  -webkit-backdrop-filter: blur(22px) saturate(165%);
+  border: 1.5px solid rgba(255,255,255,0.65);
   box-shadow:
-    0 8px 40px rgba(60,160,220,0.18),
-    0 2px 8px rgba(255,255,255,0.60) inset,
-    0 -2px 6px rgba(100,200,230,0.15) inset;
+    0 18px 50px rgba(2,50,110,0.32),
+    0 4px 14px rgba(255,255,255,0.34) inset,
+    0 -4px 14px rgba(80,170,230,0.22) inset;
 }
 
 /* Gloss highlight bar at the top of the card */
@@ -152,13 +165,25 @@ body {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 48%;
+  height: 56%;
   border-radius: 32px 32px 60% 60% / 32px 32px 40px 40px;
   background: linear-gradient(
     180deg,
-    rgba(255,255,255,0.55) 0%,
+    rgba(255,255,255,0.62) 0%,
     rgba(255,255,255,0.00) 100%
   );
+  pointer-events: none;
+}
+
+.invite-card::after {
+  content: '';
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  top: -80px;
+  right: -70px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.44) 0%, rgba(255,255,255,0) 70%);
   pointer-events: none;
 }
 
@@ -456,6 +481,47 @@ body {
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
+}
+
+.fish-school {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.fish {
+  position: absolute;
+  filter: drop-shadow(0 3px 10px rgba(5, 35, 80, 0.35));
+  animation: swim linear infinite;
+  opacity: 0.9;
+}
+
+.fish:nth-child(1) { top: 18%; left: -8%; font-size: 2.2rem; animation-duration: 24s; animation-delay: 0s; }
+.fish:nth-child(2) { top: 30%; left: -10%; font-size: 1.8rem; animation-duration: 17s; animation-delay: -7s; }
+.fish:nth-child(3) { top: 42%; left: -12%; font-size: 2.4rem; animation-duration: 22s; animation-delay: -2s; }
+.fish:nth-child(4) { top: 58%; left: -8%; font-size: 1.7rem; animation-duration: 19s; animation-delay: -10s; }
+.fish:nth-child(5) { top: 72%; left: -14%; font-size: 2.1rem; animation-duration: 26s; animation-delay: -4s; }
+.fish:nth-child(6) { top: 80%; left: -6%; font-size: 1.5rem; animation-duration: 16s; animation-delay: -12s; }
+.fish:nth-child(7) { top: 10%; left: -10%; font-size: 1.9rem; animation-duration: 20s; animation-delay: -15s; }
+
+@keyframes swim {
+  0% {
+    transform: translateX(-8vw) translateY(0) scaleX(1);
+    opacity: 0;
+  }
+  10% { opacity: 0.9; }
+  50% {
+    transform: translateX(55vw) translateY(-8px) scaleX(1);
+  }
+  51% {
+    transform: translateX(56vw) translateY(-8px) scaleX(-1);
+  }
+  100% {
+    transform: translateX(115vw) translateY(4px) scaleX(-1);
+    opacity: 0;
+  }
 }
 
 .spark {
