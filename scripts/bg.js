@@ -49,8 +49,8 @@
     for (let i = 0; i < count; i++) {
       const el = document.createElement(tag);
       if (className) el.className = className;
-      if (typeof contents === 'function') el.textContent = contents(i);
-      else if (contents != null) el.textContent = contents;
+      if (typeof contents === 'function') el.innerHTML = contents(i);
+      else if (contents != null) el.innerHTML = contents;
       parent.appendChild(el);
       items.push(el);
     }
@@ -91,7 +91,8 @@
 
     // Slightly jitter orb animation durations
     orbs.forEach((el, i) => {
-      el.style.animationDuration = (18 + i * 4 + Math.random() * 8) + 's';
+      const base = parseFloat(orbConfigs[i].animationDuration) || 18;
+      el.style.animationDuration = Math.max(8, base + (Math.random() * 6) - 3) + 's';
     });
   });
 })();
