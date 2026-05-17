@@ -1,0 +1,500 @@
+/* ============================================================
+   Frutiger Aero — Baby Shower Invite
+   A mid-2000s glossy, glassy, nature-inspired aesthetic
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&family=Pacifico&display=swap');
+
+/* ---------- Reset & Base ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Nunito', 'Segoe UI', sans-serif;
+  color: #1a3a4a;
+  overflow-x: hidden;
+
+  /* Frutiger Aero sky-to-aqua gradient */
+  background: linear-gradient(
+    160deg,
+    #c9f0ff 0%,
+    #a0dff7 20%,
+    #6ecff6 40%,
+    #4ab8e8 55%,
+    #74d7c4 75%,
+    #a8eac8 100%
+  );
+  background-attachment: fixed;
+}
+
+/* ---------- Bokeh / Orb background decorations ---------- */
+.bg-orbs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.45;
+  animation: drift linear infinite;
+}
+
+.orb:nth-child(1)  { width: 320px; height: 320px; background: radial-gradient(circle, #ffffff 0%, #b3eaff 60%, transparent 100%); top: -80px;  left: -60px;  animation-duration: 22s; animation-delay: 0s;  }
+.orb:nth-child(2)  { width: 240px; height: 240px; background: radial-gradient(circle, #d0f8e8 0%, #5acfb0 60%, transparent 100%); top: 30%;    right: -50px; animation-duration: 18s; animation-delay: -6s; }
+.orb:nth-child(3)  { width: 180px; height: 180px; background: radial-gradient(circle, #fff8c0 0%, #ffe066 60%, transparent 100%); bottom: 10%; left: 20%;   animation-duration: 26s; animation-delay: -12s;}
+.orb:nth-child(4)  { width: 260px; height: 260px; background: radial-gradient(circle, #e8d5ff 0%, #b57bee 60%, transparent 100%); bottom: -60px; right: 15%; animation-duration: 30s; animation-delay: -4s; }
+.orb:nth-child(5)  { width: 140px; height: 140px; background: radial-gradient(circle, #ffffff 0%, #80d4f0 60%, transparent 100%); top: 55%;    left: 5%;    animation-duration: 15s; animation-delay: -9s; }
+
+@keyframes drift {
+  0%   { transform: translateY(0px)   rotate(0deg); }
+  33%  { transform: translateY(-30px) rotate(5deg); }
+  66%  { transform: translateY(15px)  rotate(-4deg); }
+  100% { transform: translateY(0px)   rotate(0deg); }
+}
+
+/* ---------- Floating bubbles ---------- */
+.bubbles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -80px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 30%,
+    rgba(255,255,255,0.85) 0%,
+    rgba(160,220,255,0.35) 50%,
+    rgba(100,200,240,0.10) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    inset 2px 3px 6px rgba(255,255,255,0.7),
+    inset -2px -2px 6px rgba(100,180,230,0.25);
+  animation: rise linear infinite;
+}
+
+/* varied sizes & positions */
+.bubble:nth-child(1)  { width: 28px;  height: 28px;  left: 7%;   animation-duration: 14s; animation-delay: 0s;   }
+.bubble:nth-child(2)  { width: 18px;  height: 18px;  left: 15%;  animation-duration: 11s; animation-delay: -3s;  }
+.bubble:nth-child(3)  { width: 42px;  height: 42px;  left: 25%;  animation-duration: 17s; animation-delay: -7s;  }
+.bubble:nth-child(4)  { width: 14px;  height: 14px;  left: 35%;  animation-duration: 9s;  animation-delay: -1s;  }
+.bubble:nth-child(5)  { width: 34px;  height: 34px;  left: 50%;  animation-duration: 13s; animation-delay: -5s;  }
+.bubble:nth-child(6)  { width: 22px;  height: 22px;  left: 62%;  animation-duration: 16s; animation-delay: -9s;  }
+.bubble:nth-child(7)  { width: 50px;  height: 50px;  left: 70%;  animation-duration: 20s; animation-delay: -2s;  }
+.bubble:nth-child(8)  { width: 16px;  height: 16px;  left: 80%;  animation-duration: 10s; animation-delay: -6s;  }
+.bubble:nth-child(9)  { width: 36px;  height: 36px;  left: 88%;  animation-duration: 15s; animation-delay: -11s; }
+.bubble:nth-child(10) { width: 24px;  height: 24px;  left: 93%;  animation-duration: 12s; animation-delay: -4s;  }
+
+@keyframes rise {
+  0%   { transform: translateY(0)      translateX(0px)   scale(1);   opacity: 0; }
+  10%  { opacity: 1; }
+  80%  { opacity: 0.9; }
+  100% { transform: translateY(-110vh) translateX(20px)  scale(0.85); opacity: 0; }
+}
+
+/* ---------- Page layout ---------- */
+.page-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px 60px;
+  min-height: 100vh;
+}
+
+/* ---------- Glass card ---------- */
+.invite-card {
+  width: 100%;
+  max-width: 640px;
+  border-radius: 32px;
+  padding: 52px 48px 48px;
+  position: relative;
+  overflow: hidden;
+
+  /* Frutiger Aero glass */
+  background: linear-gradient(
+    160deg,
+    rgba(255,255,255,0.72) 0%,
+    rgba(200,240,255,0.55) 50%,
+    rgba(170,235,220,0.50) 100%
+  );
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1.5px solid rgba(255,255,255,0.80);
+  box-shadow:
+    0 8px 40px rgba(60,160,220,0.18),
+    0 2px 8px rgba(255,255,255,0.60) inset,
+    0 -2px 6px rgba(100,200,230,0.15) inset;
+}
+
+/* Gloss highlight bar at the top of the card */
+.invite-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 48%;
+  border-radius: 32px 32px 60% 60% / 32px 32px 40px 40px;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.55) 0%,
+    rgba(255,255,255,0.00) 100%
+  );
+  pointer-events: none;
+}
+
+/* ---------- Header / Hero ---------- */
+.invite-header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.stork-icon {
+  font-size: 3.4rem;
+  display: block;
+  margin-bottom: 6px;
+  filter: drop-shadow(0 3px 8px rgba(100,180,230,0.5));
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+.invite-header h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(2.2rem, 6vw, 3rem);
+  line-height: 1.15;
+  color: #1a6e8e;
+  text-shadow:
+    0 2px 4px rgba(255,255,255,0.8),
+    0 4px 16px rgba(80,190,230,0.35);
+}
+
+.invite-header h1 span {
+  color: #e05fa0;
+  text-shadow:
+    0 2px 4px rgba(255,255,255,0.8),
+    0 4px 16px rgba(230,100,170,0.35);
+}
+
+.invite-header .subtitle {
+  margin-top: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #2a8aaa;
+}
+
+/* ---------- Divider ---------- */
+.aero-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.aero-divider::before,
+.aero-divider::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, rgba(100,190,230,0.6), transparent);
+}
+
+.aero-divider-icon {
+  font-size: 1.3rem;
+  filter: drop-shadow(0 1px 4px rgba(100,200,240,0.5));
+}
+
+/* ---------- Details section ---------- */
+.invite-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 32px;
+}
+
+.detail-pill {
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,0.75) 0%,
+    rgba(195,240,255,0.60) 100%
+  );
+  border: 1px solid rgba(255,255,255,0.85);
+  border-radius: 18px;
+  padding: 18px 16px 16px;
+  text-align: center;
+  box-shadow:
+    0 3px 12px rgba(60,150,210,0.12),
+    0 1px 3px rgba(255,255,255,0.7) inset;
+  position: relative;
+  overflow: hidden;
+}
+
+/* mini gloss on each pill */
+.detail-pill::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 50%;
+  border-radius: 18px 18px 60% 60%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.45) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.detail-pill .pill-icon {
+  font-size: 1.6rem;
+  display: block;
+  margin-bottom: 6px;
+  filter: drop-shadow(0 2px 4px rgba(60,160,220,0.3));
+}
+
+.detail-pill .pill-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #3a9aba;
+  margin-bottom: 4px;
+}
+
+.detail-pill .pill-value {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1a3a4a;
+  line-height: 1.3;
+}
+
+.detail-pill .pill-sub {
+  display: block;
+  font-size: 0.8rem;
+  color: #4a7a8a;
+  margin-top: 2px;
+}
+
+/* full-width pill */
+.detail-pill.full {
+  grid-column: 1 / -1;
+}
+
+/* ---------- Note / message ---------- */
+.invite-note {
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,0.65) 0%,
+    rgba(210,250,240,0.55) 100%
+  );
+  border: 1px solid rgba(255,255,255,0.80);
+  border-radius: 20px;
+  padding: 20px 22px;
+  margin-bottom: 32px;
+  font-size: 0.97rem;
+  line-height: 1.7;
+  color: #1e4a5a;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(60,150,210,0.10), 0 1px 3px rgba(255,255,255,0.6) inset;
+  font-style: italic;
+}
+
+.invite-note strong {
+  font-style: normal;
+  color: #1a6e8e;
+}
+
+/* ---------- RSVP section ---------- */
+.rsvp-section {
+  text-align: center;
+}
+
+.rsvp-section h2 {
+  font-family: 'Pacifico', cursive;
+  font-size: 1.5rem;
+  color: #1a6e8e;
+  margin-bottom: 12px;
+  text-shadow: 0 2px 6px rgba(255,255,255,0.7);
+}
+
+.rsvp-section p {
+  font-size: 0.9rem;
+  color: #2a5a6a;
+  margin-bottom: 20px;
+}
+
+/* Glossy CTA button */
+.rsvp-btn {
+  display: inline-block;
+  padding: 14px 40px;
+  border-radius: 50px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  /* Aero glossy button */
+  background: linear-gradient(
+    180deg,
+    #6fd9f8 0%,
+    #28b6f6 40%,
+    #0e9ad8 60%,
+    #0880c0 100%
+  );
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0,80,140,0.5);
+  box-shadow:
+    0 6px 20px rgba(14,154,216,0.45),
+    0 2px 6px rgba(14,154,216,0.35),
+    0 1px 0 rgba(255,255,255,0.25) inset;
+}
+
+/* gloss overlay on button */
+.rsvp-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 52%;
+  border-radius: 50px 50px 60% 60%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.05) 100%);
+  pointer-events: none;
+}
+
+.rsvp-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow:
+    0 10px 28px rgba(14,154,216,0.50),
+    0 3px 8px rgba(14,154,216,0.40),
+    0 1px 0 rgba(255,255,255,0.25) inset;
+}
+
+.rsvp-btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* secondary (pink) RSVP email link */
+.rsvp-email {
+  display: block;
+  margin-top: 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #c0407a;
+  text-decoration: none;
+  letter-spacing: 0.03em;
+  transition: color 0.15s;
+}
+.rsvp-email:hover { color: #e05fa0; text-decoration: underline; }
+
+/* ---------- Registry / extras ---------- */
+.extras {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+.tag-pill {
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,0.70) 0%,
+    rgba(190,235,255,0.55) 100%
+  );
+  border: 1px solid rgba(255,255,255,0.80);
+  border-radius: 50px;
+  padding: 8px 18px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #1a6e8e;
+  box-shadow: 0 2px 8px rgba(60,150,210,0.10), 0 1px 2px rgba(255,255,255,0.65) inset;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ---------- Footer ---------- */
+.invite-footer {
+  margin-top: 36px;
+  text-align: center;
+  font-size: 0.78rem;
+  color: rgba(30, 90, 120, 0.65);
+  letter-spacing: 0.05em;
+}
+
+/* ---------- Decorative leaf / star sparkles ---------- */
+.sparkles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.spark {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  animation: twinkle ease-in-out infinite alternate;
+}
+
+.spark:nth-child(1)  { width: 4px; height: 4px; top: 8%;   left: 10%;  animation-duration: 3.2s; animation-delay: 0s;   }
+.spark:nth-child(2)  { width: 3px; height: 3px; top: 18%;  left: 70%;  animation-duration: 2.5s; animation-delay: -1s;  }
+.spark:nth-child(3)  { width: 5px; height: 5px; top: 40%;  left: 88%;  animation-duration: 4.0s; animation-delay: -0.5s;}
+.spark:nth-child(4)  { width: 3px; height: 3px; top: 65%;  left: 22%;  animation-duration: 3.6s; animation-delay: -2s;  }
+.spark:nth-child(5)  { width: 4px; height: 4px; top: 80%;  left: 55%;  animation-duration: 2.8s; animation-delay: -1.5s;}
+.spark:nth-child(6)  { width: 3px; height: 3px; top: 30%;  left: 45%;  animation-duration: 3.0s; animation-delay: -0.8s;}
+.spark:nth-child(7)  { width: 5px; height: 5px; top: 55%;  left: 5%;   animation-duration: 4.4s; animation-delay: -3s;  }
+.spark:nth-child(8)  { width: 3px; height: 3px; top: 90%;  left: 80%;  animation-duration: 2.2s; animation-delay: -0.3s;}
+
+@keyframes twinkle {
+  0%   { opacity: 0.2; transform: scale(0.8); }
+  100% { opacity: 1.0; transform: scale(1.4); box-shadow: 0 0 6px 2px rgba(255,255,255,0.8); }
+}
+
+/* ---------- Responsive tweaks ---------- */
+@media (max-width: 520px) {
+  .invite-card {
+    padding: 36px 24px 36px;
+    border-radius: 24px;
+  }
+
+  .invite-details {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-pill.full {
+    grid-column: 1;
+  }
+
+  .invite-header h1 {
+    font-size: 2rem;
+  }
+}
