@@ -39,7 +39,7 @@
         <header class="invite-header">
           <span class="fish-icon" role="img" aria-label="fish">🐠</span>
 
-          <p class="system-kicker">INITIALIZING CELEBRATION...</p>
+          <p class="system-kicker">A SPECIAL CELEBRATION...</p>
 
           <h1>
             You're Invited to<br />
@@ -47,23 +47,32 @@
           </h1>
 
           <p class="subtitle">
-            A celebration for the arrival of Mark Travis Reeves.
+            Celebrating the upcoming arrival of Mark Travis Reeves.
           </p>
 
-          <div class="loading-module" aria-label="Baby loading progress">
+          <div
+            class="loading-module due-date-loader"
+            aria-label="Baby loading progress toward due date"
+          >
             <div class="loading-text">
-              <span>BABY LOADING</span>
-              <span>78%</span>
+              <span class="loading-status">BABY LOADING</span>
+              <span class="loading-percent">78%</span>
             </div>
+
             <div class="loading-track">
               <div class="loading-fill"></div>
+              <span class="loading-sheen"></span>
+            </div>
+
+            <div class="due-date-line">
+              Estimated arrival: <strong>August 13, 2026</strong>
             </div>
           </div>
         </header>
 
         <!-- Decorative divider -->
         <div class="aero-divider" aria-hidden="true">
-          <span class="aero-divider-icon">🌿</span>
+          <span class="aero-divider-icon">🐠</span>
         </div>
 
         <!-- Event details grid -->
@@ -132,31 +141,40 @@
         <!-- Personal message -->
         <div class="invite-note">
           <div class="note-title">Gifts and Registry Information</div>
+
           <p>
             Baby supplies are on our
-            <strong
-              ><a
+
+            <strong>
+              <a
                 class="external-link"
                 href="https://my.babylist.com/markreeves"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Open Babylist registry (opens in a new tab)"
-                >Babylist registry</a
-              ></strong
-            >, and if you'd like to bring a childhood book or toy that reminds
-            you of growing up, we'd love that too. 💙<br />
-            We are just excited to gather, grill, and celebrate the birth of
-            Baby Mark together!
+              >
+                Babylist registry
+              </a>
+            </strong>
+
+            and if you'd like to bring a childhood book or toy that reminds you
+            of growing up, we'd love that too. 💙
           </p>
-          <div class="aero-divider" aria-hidden="true">
-            <span class="aero-divider-icon">Optional Diaper Raffle</span>
+
+          <!-- Vista-style divider heading -->
+          <div class="raffle-heading" aria-hidden="true">
+            <span class="raffle-line"></span>
+
+            <h2>Optional Diaper Raffle</h2>
+
+            <span class="raffle-line"></span>
           </div>
+
           <p>
             Bring a pack of diapers (any size) or baby wipes for raffle tickets
             to win a gift card.
           </p>
         </div>
-
         <!-- Registry / tags -->
         <!-- <div class="extras" aria-label="Registry info">
           <span class="tag-pill">🛍️ Babylist Registry</span>
