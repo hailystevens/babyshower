@@ -3,12 +3,13 @@
 // Moves per-element decorative configuration into JavaScript.
 
 (function () {
+  const DELAY_VARIANCE = 6;
   const orbConfigs = [
-    { width: '340px', height: '340px', background: 'radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(210,250,255,0.95) 20%, rgba(91,229,255,0.55) 52%, transparent 100%)', top: '-100px', left: '-80px', animationDuration: '22s', animationDelay: '0s' },
-    { width: '260px', height: '260px', background: 'radial-gradient(circle, rgba(210,255,245,0.98) 0%, rgba(77,242,190,0.78) 28%, rgba(40,170,255,0.24) 65%, transparent 100%)', top: '28%', right: '-60px', animationDuration: '18s', animationDelay: '-6s' },
-    { width: '200px', height: '200px', background: 'radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(132,255,214,0.9) 18%, rgba(97,229,255,0.5) 58%, transparent 100%)', bottom: '10%', left: '18%', animationDuration: '26s', animationDelay: '-12s' },
-    { width: '280px', height: '280px', background: 'radial-gradient(circle, rgba(235,245,255,0.95) 0%, rgba(145,200,255,0.9) 24%, rgba(70,120,255,0.34) 60%, transparent 100%)', bottom: '-70px', right: '12%', animationDuration: '30s', animationDelay: '-4s' },
-    { width: '150px', height: '150px', background: 'radial-gradient(circle, rgba(255,255,255,0.98) 0%, rgba(140,245,255,0.82) 24%, rgba(72,190,255,0.34) 62%, transparent 100%)', top: '55%', left: '5%', animationDuration: '15s', animationDelay: '-9s' },
+    { width: '340px', height: '340px', background: 'radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(210,250,255,0.95) 20%, rgba(91,229,255,0.55) 52%, transparent 100%)', top: '-100px', left: '-80px', baseDuration: 22, animationDelay: '0s' },
+    { width: '260px', height: '260px', background: 'radial-gradient(circle, rgba(210,255,245,0.98) 0%, rgba(77,242,190,0.78) 28%, rgba(40,170,255,0.24) 65%, transparent 100%)', top: '28%', right: '-60px', baseDuration: 18, animationDelay: '-6s' },
+    { width: '200px', height: '200px', background: 'radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(132,255,214,0.9) 18%, rgba(97,229,255,0.5) 58%, transparent 100%)', bottom: '10%', left: '18%', baseDuration: 26, animationDelay: '-12s' },
+    { width: '280px', height: '280px', background: 'radial-gradient(circle, rgba(235,245,255,0.95) 0%, rgba(145,200,255,0.9) 24%, rgba(70,120,255,0.34) 60%, transparent 100%)', bottom: '-70px', right: '12%', baseDuration: 30, animationDelay: '-4s' },
+    { width: '150px', height: '150px', background: 'radial-gradient(circle, rgba(255,255,255,0.98) 0%, rgba(140,245,255,0.82) 24%, rgba(72,190,255,0.34) 62%, transparent 100%)', top: '55%', left: '5%', baseDuration: 15, animationDelay: '-9s' },
   ];
   const bubbleConfigs = [
     { width: '28px', height: '28px', left: '7%', baseDuration: 14, baseDelay: 0 },
@@ -64,9 +65,9 @@
     const fish = make('.fish-school', 'span', 'fish', fishConfigs.length, (i) => fishConfigs[i].emoji);
 
     orbs.forEach((el, i) => {
-      const { animationDuration, ...styles } = orbConfigs[i];
+      const { baseDuration, ...styles } = orbConfigs[i];
       Object.assign(el.style, styles);
-      el.style.animationDuration = animationDuration;
+      el.style.animationDuration = `${baseDuration}s`;
     });
     bubbles.forEach((el, i) => {
       const { baseDuration, baseDelay, ...styles } = bubbleConfigs[i];
@@ -87,19 +88,19 @@
       const base = fishConfigs[i].baseDuration || 18;
       const extra = (Math.random() * 8) - 4; // -4..+4s
       el.style.animationDuration = Math.max(8, base + extra) + 's';
-      el.style.animationDelay = (fishConfigs[i].baseDelay - Math.random() * 6) + 's';
+      el.style.animationDelay = (fishConfigs[i].baseDelay - Math.random() * DELAY_VARIANCE) + 's';
     });
 
     bubbles.forEach((el, i) => {
       const config = bubbleConfigs[i];
       el.style.animationDuration = Math.max(8, config.baseDuration + (Math.random() * 6) - 3) + 's';
-      el.style.animationDelay = (config.baseDelay - Math.random() * 6) + 's';
+      el.style.animationDelay = (config.baseDelay - Math.random() * DELAY_VARIANCE) + 's';
       el.style.left = Math.min(100, Math.max(0, parseFloat(config.left) + (Math.random() * 10) - 5)) + '%';
     });
 
     // Slightly jitter orb animation durations
     orbs.forEach((el, i) => {
-      const base = parseFloat(orbConfigs[i].animationDuration) || 18;
+      const base = orbConfigs[i].baseDuration || 18;
       el.style.animationDuration = Math.max(8, base + (Math.random() * 6) - 3) + 's';
     });
   });
