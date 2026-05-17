@@ -11,16 +11,16 @@
     { width: '150px', height: '150px', background: 'radial-gradient(circle, rgba(255,255,255,0.98) 0%, rgba(140,245,255,0.82) 24%, rgba(72,190,255,0.34) 62%, transparent 100%)', top: '55%', left: '5%', animationDuration: '15s', animationDelay: '-9s' },
   ];
   const bubbleConfigs = [
-    { width: '28px', height: '28px' },
-    { width: '18px', height: '18px' },
-    { width: '42px', height: '42px' },
-    { width: '14px', height: '14px' },
-    { width: '34px', height: '34px' },
-    { width: '22px', height: '22px' },
-    { width: '50px', height: '50px' },
-    { width: '16px', height: '16px' },
-    { width: '36px', height: '36px' },
-    { width: '24px', height: '24px' },
+    { width: '28px', height: '28px', left: '7%', baseDuration: 14, baseDelay: 0 },
+    { width: '18px', height: '18px', left: '15%', baseDuration: 11, baseDelay: -3 },
+    { width: '42px', height: '42px', left: '25%', baseDuration: 17, baseDelay: -7 },
+    { width: '14px', height: '14px', left: '35%', baseDuration: 9, baseDelay: -1 },
+    { width: '34px', height: '34px', left: '50%', baseDuration: 13, baseDelay: -5 },
+    { width: '22px', height: '22px', left: '62%', baseDuration: 16, baseDelay: -9 },
+    { width: '50px', height: '50px', left: '70%', baseDuration: 20, baseDelay: -2 },
+    { width: '16px', height: '16px', left: '80%', baseDuration: 10, baseDelay: -6 },
+    { width: '36px', height: '36px', left: '88%', baseDuration: 15, baseDelay: -11 },
+    { width: '24px', height: '24px', left: '93%', baseDuration: 12, baseDelay: -4 },
   ];
   const sparkConfigs = [
     { width: '4px', height: '4px', top: '8%', left: '10%', animationDuration: '3.2s', animationDelay: '0s' },
@@ -33,13 +33,13 @@
     { width: '3px', height: '3px', top: '90%', left: '80%', animationDuration: '2.2s', animationDelay: '-0.3s' },
   ];
   const fishConfigs = [
-    { emoji: '🐠', top: '18%', left: '-8%', fontSize: '2.2rem', animationDuration: '24s', animationDelay: '0s' },
-    { emoji: '🐟', top: '30%', left: '-10%', fontSize: '1.8rem', animationDuration: '17s', animationDelay: '-7s' },
-    { emoji: '🐡', top: '42%', left: '-12%', fontSize: '2.4rem', animationDuration: '22s', animationDelay: '-2s' },
-    { emoji: '🐠', top: '58%', left: '-8%', fontSize: '1.7rem', animationDuration: '19s', animationDelay: '-10s' },
-    { emoji: '🐟', top: '72%', left: '-14%', fontSize: '2.1rem', animationDuration: '26s', animationDelay: '-4s' },
-    { emoji: '🐡', top: '80%', left: '-6%', fontSize: '1.5rem', animationDuration: '16s', animationDelay: '-12s' },
-    { emoji: '🐠', top: '10%', left: '-10%', fontSize: '1.9rem', animationDuration: '20s', animationDelay: '-15s' },
+    { emoji: '🐠', top: '18%', left: '-8%', fontSize: '2.2rem', baseDuration: 24, baseDelay: 0 },
+    { emoji: '🐟', top: '30%', left: '-10%', fontSize: '1.8rem', baseDuration: 17, baseDelay: -7 },
+    { emoji: '🐡', top: '42%', left: '-12%', fontSize: '2.4rem', baseDuration: 22, baseDelay: -2 },
+    { emoji: '🐠', top: '58%', left: '-8%', fontSize: '1.7rem', baseDuration: 19, baseDelay: -10 },
+    { emoji: '🐟', top: '72%', left: '-14%', fontSize: '2.1rem', baseDuration: 26, baseDelay: -4 },
+    { emoji: '🐡', top: '80%', left: '-6%', fontSize: '1.5rem', baseDuration: 16, baseDelay: -12 },
+    { emoji: '🐠', top: '10%', left: '-10%', fontSize: '1.9rem', baseDuration: 20, baseDelay: -15 },
   ];
 
   function make(parentSelector, tag, className, count, contents) {
@@ -64,22 +64,29 @@
     const fish = make('.fish-school', 'span', 'fish', fishConfigs.length, (i) => fishConfigs[i].emoji);
 
     orbs.forEach((el, i) => Object.assign(el.style, orbConfigs[i]));
-    bubbles.forEach((el, i) => Object.assign(el.style, bubbleConfigs[i]));
+    bubbles.forEach((el, i) => {
+      const { baseDuration, baseDelay, ...styles } = bubbleConfigs[i];
+      Object.assign(el.style, styles);
+    });
     sparks.forEach((el, i) => Object.assign(el.style, sparkConfigs[i]));
-    fish.forEach((el, i) => Object.assign(el.style, fishConfigs[i]));
-
-    // Small enhancement: randomly stagger animation-duration slightly for each fish/bubble
-    fish.forEach((el) => {
-      const base = parseFloat(getComputedStyle(el).animationDuration) || 18;
-      const extra = (Math.random() * 8) - 4; // -4..+4s
-      el.style.animationDuration = Math.max(8, base + extra) + 's';
-      el.style.animationDelay = (Math.random() * -12) + 's';
+    fish.forEach((el, i) => {
+      const { emoji, baseDuration, baseDelay, ...styles } = fishConfigs[i];
+      Object.assign(el.style, styles);
     });
 
-    bubbles.forEach((el) => {
-      el.style.animationDuration = (8 + Math.random() * 18) + 's';
-      el.style.animationDelay = (-Math.random() * 12) + 's';
-      el.style.left = (5 + Math.random() * 90) + '%';
+    // Small enhancement: randomly stagger animation-duration slightly for each fish/bubble
+    fish.forEach((el, i) => {
+      const base = fishConfigs[i].baseDuration || 18;
+      const extra = (Math.random() * 8) - 4; // -4..+4s
+      el.style.animationDuration = Math.max(8, base + extra) + 's';
+      el.style.animationDelay = (fishConfigs[i].baseDelay - Math.random() * 6) + 's';
+    });
+
+    bubbles.forEach((el, i) => {
+      const config = bubbleConfigs[i];
+      el.style.animationDuration = Math.max(8, config.baseDuration + (Math.random() * 6) - 3) + 's';
+      el.style.animationDelay = (config.baseDelay - Math.random() * 4) + 's';
+      el.style.left = Math.min(95, Math.max(5, parseFloat(config.left) + (Math.random() * 10) - 5)) + '%';
     });
 
     // Slightly jitter orb animation durations
