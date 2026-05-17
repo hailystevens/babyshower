@@ -664,6 +664,30 @@ body::after {
     0 10px 30px rgba(0,69,130,0.20);
 }
 
+.invite-note .external-link {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(18,184,232,0.06));
+  color: var(--aero-ink);
+  font-weight: 900;
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(0,40,140,0.18), inset 0 1px 1px rgba(255,255,255,0.85);
+  -webkit-tap-highlight-color: rgba(255,255,255,0.2);
+  touch-action: manipulation;
+}
+
+.invite-note .external-link:active {
+  transform: translateY(1px);
+}
+
+@media (max-width: 520px) {
+  .invite-note .external-link {
+    padding: 10px 14px;
+    font-size: 1rem;
+  }
+}
+
 .note-title {
   margin: -18px -20px 14px;
   padding: 9px 14px;
