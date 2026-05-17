@@ -63,7 +63,10 @@
     const sparks = make('.sparkles', 'div', 'spark', sparkConfigs.length);
     const fish = make('.fish-school', 'span', 'fish', fishConfigs.length, (i) => fishConfigs[i].emoji);
 
-    orbs.forEach((el, i) => Object.assign(el.style, orbConfigs[i]));
+    orbs.forEach((el, i) => {
+      const { animationDuration, ...styles } = orbConfigs[i];
+      Object.assign(el.style, styles);
+    });
     bubbles.forEach((el, i) => {
       const { baseDuration, baseDelay, ...styles } = bubbleConfigs[i];
       Object.assign(el.style, styles);
@@ -85,8 +88,8 @@
     bubbles.forEach((el, i) => {
       const config = bubbleConfigs[i];
       el.style.animationDuration = Math.max(8, config.baseDuration + (Math.random() * 6) - 3) + 's';
-      el.style.animationDelay = (config.baseDelay - Math.random() * 4) + 's';
-      el.style.left = Math.min(95, Math.max(5, parseFloat(config.left) + (Math.random() * 10) - 5)) + '%';
+      el.style.animationDelay = (config.baseDelay - Math.random() * 6) + 's';
+      el.style.left = Math.min(100, Math.max(0, parseFloat(config.left) + (Math.random() * 10) - 5)) + '%';
     });
 
     // Slightly jitter orb animation durations
