@@ -66,15 +66,20 @@
     orbs.forEach((el, i) => {
       const { animationDuration, ...styles } = orbConfigs[i];
       Object.assign(el.style, styles);
+      el.style.animationDuration = animationDuration;
     });
     bubbles.forEach((el, i) => {
       const { baseDuration, baseDelay, ...styles } = bubbleConfigs[i];
       Object.assign(el.style, styles);
+      el.style.animationDuration = `${baseDuration}s`;
+      el.style.animationDelay = `${baseDelay}s`;
     });
     sparks.forEach((el, i) => Object.assign(el.style, sparkConfigs[i]));
     fish.forEach((el, i) => {
       const { emoji, baseDuration, baseDelay, ...styles } = fishConfigs[i];
       Object.assign(el.style, styles);
+      el.style.animationDuration = `${baseDuration}s`;
+      el.style.animationDelay = `${baseDelay}s`;
     });
 
     // Small enhancement: randomly stagger animation-duration slightly for each fish/bubble
