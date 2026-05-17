@@ -127,12 +127,6 @@ body::after {
   animation: drift linear infinite;
 }
 
-.orb:nth-child(1)  { width: 340px; height: 340px; background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(210,250,255,0.95) 20%, rgba(91,229,255,0.55) 52%, transparent 100%); top: -100px; left: -80px; animation-duration: 22s; animation-delay: 0s; }
-.orb:nth-child(2)  { width: 260px; height: 260px; background: radial-gradient(circle, rgba(210,255,245,0.98) 0%, rgba(77,242,190,0.78) 28%, rgba(40,170,255,0.24) 65%, transparent 100%); top: 28%; right: -60px; animation-duration: 18s; animation-delay: -6s; }
-.orb:nth-child(3)  { width: 200px; height: 200px; background: radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(132,255,214,0.9) 18%, rgba(97,229,255,0.5) 58%, transparent 100%); bottom: 10%; left: 18%; animation-duration: 26s; animation-delay: -12s; }
-.orb:nth-child(4)  { width: 280px; height: 280px; background: radial-gradient(circle, rgba(235,245,255,0.95) 0%, rgba(145,200,255,0.9) 24%, rgba(70,120,255,0.34) 60%, transparent 100%); bottom: -70px; right: 12%; animation-duration: 30s; animation-delay: -4s; }
-.orb:nth-child(5)  { width: 150px; height: 150px; background: radial-gradient(circle, rgba(255,255,255,0.98) 0%, rgba(140,245,255,0.82) 24%, rgba(72,190,255,0.34) 62%, transparent 100%); top: 55%; left: 5%; animation-duration: 15s; animation-delay: -9s; }
-
 @keyframes drift {
   0%   { transform: translateY(0px)   rotate(0deg); }
   33%  { transform: translateY(-30px) rotate(5deg); }
@@ -167,18 +161,6 @@ body::after {
     0 0 16px rgba(140,240,255,0.22);
   animation: rise linear infinite;
 }
-
-/* varied sizes & positions */
-.bubble:nth-child(1)  { width: 28px;  height: 28px;  left: 7%;   animation-duration: 14s; animation-delay: 0s;   }
-.bubble:nth-child(2)  { width: 18px;  height: 18px;  left: 15%;  animation-duration: 11s; animation-delay: -3s;  }
-.bubble:nth-child(3)  { width: 42px;  height: 42px;  left: 25%;  animation-duration: 17s; animation-delay: -7s;  }
-.bubble:nth-child(4)  { width: 14px;  height: 14px;  left: 35%;  animation-duration: 9s;  animation-delay: -1s;  }
-.bubble:nth-child(5)  { width: 34px;  height: 34px;  left: 50%;  animation-duration: 13s; animation-delay: -5s;  }
-.bubble:nth-child(6)  { width: 22px;  height: 22px;  left: 62%;  animation-duration: 16s; animation-delay: -9s;  }
-.bubble:nth-child(7)  { width: 50px;  height: 50px;  left: 70%;  animation-duration: 20s; animation-delay: -2s;  }
-.bubble:nth-child(8)  { width: 16px;  height: 16px;  left: 80%;  animation-duration: 10s; animation-delay: -6s;  }
-.bubble:nth-child(9)  { width: 36px;  height: 36px;  left: 88%;  animation-duration: 15s; animation-delay: -11s; }
-.bubble:nth-child(10) { width: 24px;  height: 24px;  left: 93%;  animation-duration: 12s; animation-delay: -4s;  }
 
 @keyframes rise {
   0%   { transform: translateY(0)      translateX(0px)   scale(1);   opacity: 0; }
@@ -747,14 +729,6 @@ body::after {
   opacity: 0.9;
 }
 
-.fish:nth-child(1) { top: 18%; left: -8%; font-size: 2.2rem; animation-duration: 24s; animation-delay: 0s; }
-.fish:nth-child(2) { top: 30%; left: -10%; font-size: 1.8rem; animation-duration: 17s; animation-delay: -7s; }
-.fish:nth-child(3) { top: 42%; left: -12%; font-size: 2.4rem; animation-duration: 22s; animation-delay: -2s; }
-.fish:nth-child(4) { top: 58%; left: -8%; font-size: 1.7rem; animation-duration: 19s; animation-delay: -10s; }
-.fish:nth-child(5) { top: 72%; left: -14%; font-size: 2.1rem; animation-duration: 26s; animation-delay: -4s; }
-.fish:nth-child(6) { top: 80%; left: -6%; font-size: 1.5rem; animation-duration: 16s; animation-delay: -12s; }
-.fish:nth-child(7) { top: 10%; left: -10%; font-size: 1.9rem; animation-duration: 20s; animation-delay: -15s; }
-
 @keyframes swim {
   0% {
     transform: translateX(-8vw) translateY(0) scaleX(-1);
@@ -779,15 +753,6 @@ body::after {
   background: rgba(255, 255, 255, 0.9);
   animation: twinkle ease-in-out infinite alternate;
 }
-
-.spark:nth-child(1)  { width: 4px; height: 4px; top: 8%;   left: 10%;  animation-duration: 3.2s; animation-delay: 0s;   }
-.spark:nth-child(2)  { width: 3px; height: 3px; top: 18%;  left: 70%;  animation-duration: 2.5s; animation-delay: -1s;  }
-.spark:nth-child(3)  { width: 5px; height: 5px; top: 40%;  left: 88%;  animation-duration: 4.0s; animation-delay: -0.5s;}
-.spark:nth-child(4)  { width: 3px; height: 3px; top: 65%;  left: 22%;  animation-duration: 3.6s; animation-delay: -2s;  }
-.spark:nth-child(5)  { width: 4px; height: 4px; top: 80%;  left: 55%;  animation-duration: 2.8s; animation-delay: -1.5s;}
-.spark:nth-child(6)  { width: 3px; height: 3px; top: 30%;  left: 45%;  animation-duration: 3.0s; animation-delay: -0.8s;}
-.spark:nth-child(7)  { width: 5px; height: 5px; top: 55%;  left: 5%;   animation-duration: 4.4s; animation-delay: -3s;  }
-.spark:nth-child(8)  { width: 3px; height: 3px; top: 90%;  left: 80%;  animation-duration: 2.2s; animation-delay: -0.3s;}
 
 @keyframes twinkle {
   0%   { opacity: 0.2; transform: scale(0.8); }
